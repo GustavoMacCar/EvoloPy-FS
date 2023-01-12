@@ -15,11 +15,11 @@ import fitnessFUNs
 # Select optimizers
 PSO=False
 MVO=False
-GWO=True
+GWO=False
 MFO=False
 WOA=False
 FFA=False
-BAT=False
+BAT=True
 
 
 
@@ -34,7 +34,7 @@ datasets=["ctu13-3"]
 # Select number of repetitions for each experiment. 
 # To obtain meaningful statistical results, usually 30 independent runs 
 # are executed for each algorithm.
-NumOfRuns=3
+NumOfRuns=1
 
 # Select general parameters for all optimizers (population size, number of iterations)
 PopulationSize = 20
@@ -47,6 +47,11 @@ Export=True
 #ExportToFile="YourResultsAreHere.csv"
 #Automaticly generated file name by date and time
 ExportToFile="experiment"+time.strftime("%Y-%m-%d-%H-%M-%S")+".csv" 
+ExportToProject="/home/gmcma/tg/tg-botnet/features.csv" #Adjust to match features.csv file path in the models project
+with open(ExportToProject, 'a', newline='\n') as out:
+    out.truncate(0)
+out.close()
+
 
 # Check if it works at least once
 Flag=False
@@ -77,7 +82,7 @@ for j in range (0, len(datasets)):        # specfiy the number of the datasets
                 func_details=fitnessFUNs.getFunctionDetails(0)
                 completeData=datasets[j]+".csv"
 
-                if len(rows) == 0:
+                if len(rows) == 0: #optimized vazio
                     x, optimized_cols=slctr.selector(i,func_details,PopulationSize,Iterations,completeData, []) #automatizar o parametro de optimized cols
                     if(Export==True):
                         with open(ExportToFile, 'a',newline='\n') as out:
@@ -92,12 +97,36 @@ for j in range (0, len(datasets)):        # specfiy the number of the datasets
                             a=numpy.concatenate([optimized_cols])
                             writer.writerow(a)
                         out.close()
+                        with open(ExportToProject, 'a',newline='\n') as out:
+                            writer = csv.writer(out,delimiter=',')
+                            if (Flag==False): # just one time to write the header of the CSV file
+                                writer.writerow([x.optimizer])
+                            #     pass
+                            #     header= numpy.concatenate([["Optimizer","Dataset","objfname","Experiment","startTime","EndTime","ExecutionTime","trainAcc","testAcc"],CnvgHeader1,CnvgHeader1])
+                            #     #header= numpy.concatenate(["Optimizer"])
+                            #     writer.writerow(header)
+                            #a=numpy.concatenate([[x.optimizer,datasets[j],x.objfname,k+1,x.startTime,x.endTime,x.executionTime,x.trainAcc,x.testAcc],x.convergence1,x.convergence2, optimized_cols])
+                            a=numpy.concatenate([optimized_cols])
+                            writer.writerow(a)
+                        out.close()
                     Flag=True # at least one experiment
 
-                for element in rows:
+                for element in rows: #optimized cheio
                     x, optimized_cols=slctr.selector(i,func_details,PopulationSize,Iterations,completeData, element) #automatizar o parametro de optimized cols
                     if(Export==True):
                         with open(ExportToFile, 'a',newline='\n') as out:
+                            writer = csv.writer(out,delimiter=',')
+                            if (Flag==False): # just one time to write the header of the CSV file
+                                writer.writerow([x.optimizer])
+                            #     pass
+                            #     header= numpy.concatenate([["Optimizer","Dataset","objfname","Experiment","startTime","EndTime","ExecutionTime","trainAcc","testAcc"],CnvgHeader1,CnvgHeader1])
+                            #     #header= numpy.concatenate(["Optimizer"])
+                            #     writer.writerow(header)
+                            #a=numpy.concatenate([[x.optimizer,datasets[j],x.objfname,k+1,x.startTime,x.endTime,x.executionTime,x.trainAcc,x.testAcc],x.convergence1,x.convergence2, optimized_cols])
+                            a=numpy.concatenate([optimized_cols])
+                            writer.writerow(a)
+                        out.close()
+                        with open(ExportToProject, 'a',newline='\n') as out:
                             writer = csv.writer(out,delimiter=',')
                             if (Flag==False): # just one time to write the header of the CSV file
                                 writer.writerow([x.optimizer])
