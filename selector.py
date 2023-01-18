@@ -123,8 +123,8 @@ def selector(algo,func_details,popSize,Iter,completeData, optimized_cols=[]):
     #x.testFP=testClassification_results[3]
     #x.testTN=testClassification_results[4] 
     
-    print(reducedfeatures)
-    print(len(reducedfeatures))
+    #print(reducedfeatures)
+    #print(len(reducedfeatures))
     return x, reducedfeatures
     
 #####################################################################    
