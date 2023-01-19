@@ -72,7 +72,7 @@ Export=True
 #Automaticly generated file name by date and time
 ExportToFile="experiment"+time.strftime("%Y-%m-%d-%H-%M-%S")+".csv" 
 ExportToProject="/home/gmcma/tg/tg-botnet/features.csv" #Adjust to match features.csv file path in the models project
-with open(ExportToProject, 'a', newline='\n') as out:
+with open(ExportToProject, 'w+', newline='\n') as out:
     out.truncate()
 out.close()
 
@@ -259,8 +259,8 @@ if len(sys.argv) == 3:
     #Automaticly generated file name by date and time
     ExportToFile="experiment"+time.strftime("%Y-%m-%d-%H-%M-%S")+".csv" 
     ExportToProject="/home/gmcma/tg/tg-botnet/features.csv" #Adjust to match features.csv file path in the models project
-    with open(ExportToProject, 'a', newline='\n') as out:
-        out.truncate(0)
+    with open(ExportToProject, 'w+', newline='\n') as out:
+        out.truncate()
     out.close()
 
     

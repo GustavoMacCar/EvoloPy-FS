@@ -42,14 +42,12 @@ def selector(algo,func_details,popSize,Iter,completeData, optimized_cols=[]):
     dataTarget=data_set[0:numRowsData,-1]  
 
     if len(optimized_cols) == 0:
-        pass
         numFeaturesData=numpy.shape(data_set)[1]-1
         dataInput=data_set[0:numRowsData,0:-1] 
         dim=numFeaturesData
         
 
     else:
-        pass
         numFeaturesData=len(optimized_cols)
         dataInput=data_set[0:numRowsData,optimized_cols]
         dim=len(optimized_cols)
