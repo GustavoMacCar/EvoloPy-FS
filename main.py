@@ -16,6 +16,7 @@ import sys
 # Select optimizers
 
 current_dataset = "isot_2010_sample"
+commom_path = '/home/gmcma/tg/tg-botnet'
 
 PSO=False
 MVO=False
@@ -73,7 +74,7 @@ Export=True
 #ExportToFile="YourResultsAreHere.csv"
 #Automaticly generated file name by date and time
 ExportToFile="experiment"+time.strftime("%Y-%m-%d-%H-%M-%S")+".csv" 
-ExportToProject="/home/gmcma/tg/tg-botnet/features.csv" #Adjust to match features.csv file path in the models project
+ExportToProject=f"{commom_path}/features.csv" #Adjust to match features.csv file path in the models project
 with open(ExportToProject, 'w+', newline='\n') as out:
     out.truncate()
 out.close()
@@ -82,17 +83,17 @@ with open('optimized.csv', 'w') as out:
     out.truncate()
 out.close()
 
-FirstOptimizer="/home/gmcma/tg/tg-botnet/first_optimizer.csv"
+FirstOptimizer=f"{commom_path}/first_optimizer.csv"
 with open(FirstOptimizer, 'w+') as out:
     out.truncate()
 out.close()
 
-SecondOptimizer="/home/gmcma/tg/tg-botnet/second_optimizer.csv"
+SecondOptimizer=f"{commom_path}/second_optimizer.csv"
 with open(SecondOptimizer, 'w+') as out:
     out.truncate()
 out.close()
 
-ThirdOptimizer="/home/gmcma/tg/tg-botnet/third_optimizer.csv"
+ThirdOptimizer=f"{commom_path}/third_optimizer.csv"
 with open(ThirdOptimizer, 'w+') as out:
     out.truncate()
 out.close()
@@ -266,7 +267,6 @@ if len(sys.argv) >= 3:
     #ExportToFile="YourResultsAreHere.csv"
     #Automaticly generated file name by date and time
     ExportToFile="experiment"+time.strftime("%Y-%m-%d-%H-%M-%S")+".csv" 
-    ExportToProject="/home/gmcma/tg/tg-botnet/features.csv" #Adjust to match features.csv file path in the models project
     with open(ExportToProject, 'w+', newline='\n') as out:
         out.truncate()
     out.close()
@@ -406,7 +406,6 @@ if len(sys.argv) >= 4:
     #ExportToFile="YourResultsAreHere.csv"
     #Automaticly generated file name by date and time
     ExportToFile="experiment"+time.strftime("%Y-%m-%d-%H-%M-%S")+".csv" 
-    ExportToProject="/home/gmcma/tg/tg-botnet/features.csv" #Adjust to match features.csv file path in the models project
     with open(ExportToProject, 'w+', newline='\n') as out:
         out.truncate()
     out.close()
